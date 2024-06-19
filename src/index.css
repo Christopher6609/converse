@@ -3,3 +3,12 @@
 @tailwind utilities;
 
 
+.liner{
+  border: 1px solid black;
+}
+.linerblue{
+  border: 1px solid blue;
+}
+.linerred{
+  border: 1px solid red;
+}
