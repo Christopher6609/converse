@@ -18,12 +18,10 @@ const Navigation = () => {
                 <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/shop'>
                     Contact
                 </Link>
-                <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/signin'>
+                <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/auth'>
                     Sign in
                 </Link>
-                <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/signup'>
-                    Sign up
-                </Link>
+                
             </div>
           
         </div>
