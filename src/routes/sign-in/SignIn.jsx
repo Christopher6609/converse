@@ -7,7 +7,7 @@ import Button from "../../components/atoms/Button/Button";
 const SignIn = () => {
     const signInGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-       createUserDocumentFromAuth(user);
+       console.log(user);
     }
 
     const initialFormFields = {
@@ -23,17 +23,6 @@ const SignIn = () => {
         setFormFields({ ...formFields,[name]:value })
     }
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    // try{
-    //     const response = await signInAuthwithEmailandPassword(email,password);
-    //     console.log(response);
-       
-    // }catch(error){
-    //     console.log(error)
-    // }
-    // }
 
     const handleSubmit = async (event) => {
         event.preventDefault();

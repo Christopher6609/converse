@@ -6,7 +6,7 @@ import Button from '../../components/atoms/Button/Button';
 
 
 const defaultFormFields = {
-  username:'',
+  displayName:'',
   email:'',
   password:'',
   confirmpassword:''
@@ -14,7 +14,7 @@ const defaultFormFields = {
 
 const SignUp = () => {
 const [formFields, setFormFields] = useState(defaultFormFields);
-const {username,email,password,confirmpassword} = formFields;
+const {displayName,email,password,confirmpassword} = formFields;
 
 const handleChange = (event) => {
   const {name, value} = event.target;
@@ -33,7 +33,7 @@ const handleSubmit = async (event) =>  {
   }
   try{
       const {user} = await createAuthwithUserandPassword(email, password);
-     await createUserDocumentFromAuth(user, {username});
+     await createUserDocumentFromAuth(user, {displayName});
       clearForm();
 
   }catch(error){
@@ -58,8 +58,8 @@ const handleSubmit = async (event) =>  {
         <FormInput 
           label="Username:"
           type="text"
-          name="username" 
-          value={username} 
+          name="displayName" 
+          value={displayName} 
           onChange={handleChange} 
           required
         />
