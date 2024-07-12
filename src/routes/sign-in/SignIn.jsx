@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../../components/atoms/FormInput/FormInput";
-import { createUserDocumentFromAuth, signInWithGooglePopup,signInAuthwithEmailandPassword } from "../../utils/firebase/firebase";
+import { signInWithGooglePopup,signInAuthwithEmailandPassword, } from "../../utils/firebase/firebase";
 import Button from "../../components/atoms/Button/Button";
 
 
 const SignIn = () => {
     const signInGoogleUser = async () => {
-        const {user} = await signInWithGooglePopup();
-       console.log(user);
+    await signInWithGooglePopup();
+        
+        
     }
 
     const initialFormFields = {
@@ -17,6 +18,8 @@ const SignIn = () => {
 
     const [formFields, setFormFields] = useState(initialFormFields);
     const {email,password} = formFields;
+   
+    
     const handleChange = (event) =>{
         const{ name,value } = event.target;
 
@@ -29,8 +32,8 @@ const SignIn = () => {
 
         try{
             const response = await signInAuthwithEmailandPassword(email,password );
-            console.log(response);
-        }catch(error){
+            
+       }catch(error){
             switch(error.code){
                 case 'auth/invalid-credential' :
                     alert('Invalid Credentials');
@@ -43,6 +46,8 @@ const SignIn = () => {
             }
         }
     }
+
+    
 
     return(
         <div>

@@ -1,8 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 //import  { ReactComponent as Logo } from "../../assets/crown.svg";
+import { UserContext } from "../../components/context/UserContext";
+import { signUserOut } from "../../utils/firebase/firebase";
 
 const Navigation = () => {
+
+  const {currentUser} = useContext(UserContext);
+
     return(
       <>
         <div className="navigation w-[100%] h-[70px] flex justify-between mb-[25px]">
@@ -17,11 +23,10 @@ const Navigation = () => {
                 </Link>
                 <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/shop'>
                     Contact
-                </Link>
-                <Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/auth'>
-                    Sign in
-                </Link>
-                
+                </Link>                
+                {currentUser ? (<span className="nav-link uppercase px-[15px] py-[10px] cursor-pointer"  onClick={signUserOut}>SIGN OUT</span>): (<Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/auth'>
+                    SIGN IN
+                </Link> )}
             </div>
           
         </div>
