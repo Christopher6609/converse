@@ -1,11 +1,18 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 //import  { ReactComponent as Logo } from "../../assets/crown.svg";
 import { UserContext } from "../../components/context/UserContext";
 import { signUserOut } from "../../utils/firebase/firebase";
+import CartIcon from "../../components/atoms/cart-icon/CartIcon";
+import CartDropdown from "../../components/molecules/cart-dropdown/CartDropdown";
+import { CartContext } from "../../components/context/CartContext";
+
+
 
 const Navigation = () => {
+  const {isCartOpen} = useContext(CartContext)
+
 
   const {currentUser} = useContext(UserContext);
 
@@ -27,8 +34,9 @@ const Navigation = () => {
                 {currentUser ? (<span className="nav-link uppercase px-[15px] py-[10px] cursor-pointer"  onClick={signUserOut}>SIGN OUT</span>): (<Link className="nav-link uppercase px-[15px] py-[10px] cursor-pointer" to='/auth'>
                     SIGN IN
                 </Link> )}
+                <CartIcon />
             </div>
-          
+              {isCartOpen && <CartDropdown />}
         </div>
         <Outlet />
       </>

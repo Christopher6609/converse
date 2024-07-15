@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  padding: 20px 40px;
+}
 
 .liner{
   border: 1px solid black;
