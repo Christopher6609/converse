@@ -1,17 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useState,useEffect } from "react";
 
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen : () => {},
     cartItems: [],
     addItemToCart: () => {},
+    cartCount:0
 });
 
 const addCartItem = (cartItems, productToAdd) => {
     //condition to check if the items in the cart contains the product to be added into the cart.NB this returns a boolean 
-    const existingItem = cartItems.find((cartItem)=> {
-        cartItem.id === productToAdd.id;
-    })
+    const existingItem = cartItems.find((cartItem)=>cartItem.id === productToAdd.id)
 
     // function to pick the cart item that is the same as the product to be added. Returns the array with an increment in the quantity else return the item
     if(existingItem){
@@ -25,12 +24,18 @@ const addCartItem = (cartItems, productToAdd) => {
 export const CartProvider = ({children}) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const [cartCount, setCartCount] = useState(0)
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems, productToAdd))
     }
 
-    const value = {isCartOpen, setIsCartOpen, addItemToCart, cartItems};
+useEffect(()=>{
+    const cartItemCount = cartItems.reduce((total,cartItem)=> total + cartItem.quantity, 0)
+    setCartCount(cartItemCount);
+},[cartItems])
+
+    const value = {isCartOpen, setIsCartOpen, addItemToCart,cartItems, cartCount};
     return(
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     )
