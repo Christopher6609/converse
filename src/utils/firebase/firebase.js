@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,9 +24,9 @@ provider.setCustomParameters({
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
+export const db = getFirestore(); //setting the database to an instance of firestore
 
 
-export const db = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
     if(!userAuth) return;
 
@@ -66,4 +66,34 @@ export const signUserOut = async () => {
 
 export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth,callback)
+}
+
+//method to upload the SHOP_DATA up into firestore database
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log("done");
+}
+
+//method to get the SHOP_DATA dowm from firestore database into our application
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories'); //passing the categories collection from the database into collectionRef
+  const q = query(collectionRef); //querying the database and passing the resulting object into q
+
+  const querySnapshot = await getDocs(q); //getting the documents from the query and storing it in querySnapshot
+
+  
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  },{});
+  return categoryMap;
 }
