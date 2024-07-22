@@ -48,6 +48,7 @@ export const CartProvider = ({children}) => {
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems, productToAdd))
+        console.log(cartItems);
     }
     const reduceCartItem = (itemToReduce) => {
         setCartItems(reduceItemFromCart(cartItems, itemToReduce))
