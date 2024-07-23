@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, Fragment } from "react";
 import { CategoriesContext } from "../../components/context/CategoriesContext";
 
 import { useParams } from "react-router-dom";
@@ -15,11 +15,19 @@ const Category = () => {
 
     return(
 
-        <div className="grid grid-cols-4 gap-y-[20px] gap-x-[50px]">
+        <div>
+            <h2 className="text-[3rem] ">{category.toUpperCase()}</h2>
+             <div className="grid grid-cols-4 gap-y-[20px] gap-x-[50px]">
             {products && products.map((product)=>(
-                <ProductCard key={product.id} product={product}/>
+                <Fragment>
+                    
+                     <ProductCard key={product.id} product={product}/>
+                </Fragment>
+                
             ))}
         </div>
+        </div>
+       
     )
 }
 
