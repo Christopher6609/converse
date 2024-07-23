@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 
-const CheckoutItem = ({cartItem}) => {
+const CheckItem = ({cartItem}) => {
     const {imageUrl ,name, price,quantity} = cartItem;
 
     const {reduceCartItem, addItemToCart, clearCartItem} = useContext(CartContext);
@@ -37,4 +37,4 @@ const CheckoutItem = ({cartItem}) => {
     
 }
 
-export default CheckoutItem;
+export default CheckItem;

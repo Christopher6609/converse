@@ -1,7 +1,7 @@
 import "./checkout.styles.scss";
 import { useContext } from "react";
 import { CartContext } from "../../components/context/CartContext";
-import CheckoutItem from "../../components/molecules/checkout-item/CheckoutItem"
+import CheckItem from "../../components/molecules/checkout-item/CheckItem";
 
 const Checkout = () => {
     const {cartItems, cartTotal} = useContext(CartContext);
@@ -29,7 +29,7 @@ return(
 
        {cartItems.length > 0 ? <div>{cartItems.map((cartItem)=>{
             return(
-                    <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
+                    <CheckItem key={cartItem.id} cartItem={cartItem}/>
             )
         })}</div> : <div className="h-[10rem] flex items-center justify-center"><span>Cart is empty</span></div>}
 
