@@ -20,7 +20,6 @@ const Category = () => {
              <div className="grid grid-cols-4 gap-y-[20px] gap-x-[50px]">
             {products && products.map((product)=>(
                 <Fragment>
-                    
                      <ProductCard key={product.id} product={product}/>
                 </Fragment>
                 
