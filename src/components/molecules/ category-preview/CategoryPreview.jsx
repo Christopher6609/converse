@@ -8,7 +8,7 @@ const CategoryPreview = ({title, products}) => {
                 <span className="text-[28px] mb-[25px] cursor-pointer">{title.toUpperCase()}</span>
             </h2>
                 <div className="grid grid-cols-4 gap-[20px]">
-                {products.filter(( _, idx)=> idx < 4).map((product)=> 
+                { products.filter(( _ , idx )=> idx < 4).map((product) => 
                     <ProductCard key={product.id} product={product} />
                 )}
             </div>
