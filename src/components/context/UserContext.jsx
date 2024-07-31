@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../../utils/firebase/firebase";
 import { createAction } from "../../utils/reducers/reducer.utils";
+import PropTypes from 'prop-types'
 
  export const UserContext = createContext({
     currentUser: null,
@@ -54,4 +55,8 @@ export const UserProvider = ({children}) => {
     return(
         <UserContext.Provider value={value}>{children}</UserContext.Provider>
     )
+}
+
+UserProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 }

@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
+
 import Category from "../atoms/Category";
+
 
 const Categories = ({categories}) => {
     return(
@@ -10,5 +13,9 @@ const Categories = ({categories}) => {
       </div>
         </>
     )
+}
+
+Categories.propTypes = {
+    categories: PropTypes.object,
 }
 export default Categories;
