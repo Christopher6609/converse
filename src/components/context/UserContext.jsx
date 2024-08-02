@@ -1,5 +1,6 @@
-import { createContext, useEffect, useReducer } from "react";
-import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../../utils/firebase/firebase";
+//import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
+//import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../../utils/firebase/firebase";
 import { createAction } from "../../utils/reducers/reducer.utils";
 import PropTypes from 'prop-types'
 
@@ -42,15 +43,7 @@ export const UserProvider = ({children}) => {
    // const [currentUser, setCurrentUser] = useState(null);
    const value  = {currentUser,setCurrentUser};
 
-   useEffect(() => {
-      const unsubscribe = onAuthStateChangedListener((user)=>{
-        if(user){
-            createUserDocumentFromAuth(user);
-        }
-        setCurrentUser(user);
-      })    
-      return unsubscribe
-   }, []);
+   
    
     return(
         <UserContext.Provider value={value}>{children}</UserContext.Provider>

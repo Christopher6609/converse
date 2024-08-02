@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useNavigate } from "react-router-dom";
 
 const Category = ({category}) => {
@@ -18,6 +20,13 @@ const Category = ({category}) => {
           </div>
        </>
     )
+}
+Category.propTypes = {
+  category:PropTypes.shape({
+    title:PropTypes.string,
+  imageUrl:PropTypes.string,
+  route: PropTypes.string,
+  })
 }
 
 export default Category;
