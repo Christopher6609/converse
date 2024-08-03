@@ -1,4 +1,5 @@
-import ProductCard from "../productCard/ProductCard"
+import ProductCard from "../productCard/ProductCard";
+import PropTypes from 'prop-types';
 
 
 const CategoryPreview = ({title, products}) => {
@@ -16,5 +17,14 @@ const CategoryPreview = ({title, products}) => {
         </div>
     )
 }
-
+CategoryPreview.propTypes = {
+    title:PropTypes.string,
+    products:PropTypes.arrayOf(
+        PropTypes.shape({
+            name:PropTypes.string,
+            price:PropTypes.string,
+            imageUrl: PropTypes.string,
+        })
+    )
+}
 export default CategoryPreview;

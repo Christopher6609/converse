@@ -5,7 +5,7 @@ import { getCategoriesAndDocuments } from "../../utils/firebase/firebase";
 
 export const CategoriesContext = createContext({
   categoriesMap: {},
-  setCategoriesMap: () => {},
+ 
 });
 
 export const CATEGORIES_ACTION_TYPES = {
