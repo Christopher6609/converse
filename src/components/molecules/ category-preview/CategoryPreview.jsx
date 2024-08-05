@@ -22,7 +22,7 @@ CategoryPreview.propTypes = {
     products:PropTypes.arrayOf(
         PropTypes.shape({
             name:PropTypes.string,
-            price:PropTypes.string,
+            price:PropTypes.number,
             imageUrl: PropTypes.string,
         })
     )

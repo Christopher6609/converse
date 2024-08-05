@@ -1,14 +1,22 @@
 import "./productCard.scss";
 import Button from "../../atoms/Button/Button";
 import PropTypes from "prop-types";
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { addItemToCart } from "../../../store/cart/cart.action";
+import { selectCartItems } from "../../../store/cart/cart.selector";
+import { useDispatch, useSelector } from "react-redux";
+//import { useContext } from "react";
+//import { CartContext } from "../../context/CartContext";
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  //const { addItemToCart } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
 
-  const addProductToCart = () => addItemToCart(product);
+  const dispatch = useDispatch();
+
+  const addProductToCart = () => {
+    dispatch(addItemToCart(cartItems, product));
+  };
 
   return (
     <div className="product-card-container">
@@ -26,7 +34,7 @@ const ProductCard = ({ product }) => {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     imageUrl: PropTypes.string,
   }),
 };
