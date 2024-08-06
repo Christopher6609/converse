@@ -2,8 +2,6 @@ import "./cartIcon.styles.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector} from "react-redux";
 import { selectCartCount, selectIsCartOpen } from "../../../store/cart/cart.selector";
 import { setIsCartOpen } from "../../../store/cart/cart.action";
@@ -11,12 +9,6 @@ import { setIsCartOpen } from "../../../store/cart/cart.action";
 //import { useContext } from "react";
 //import { CartContext } from "../../context/CartContext";
 //import { ReactComponent as ShoppingIcon}  from "../../../assets/shopping-bag.svg";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCartCount,
-  selectIsCartOpen,
-} from "../../../store/cart/cart.selector";
-import { setIsCartOpen } from "../../../store/cart/cart.action";
 
 const CartIcon = () => {
   //const {isCartOpen, setIsCartOpen, cartCount} = useContext(CartContext);

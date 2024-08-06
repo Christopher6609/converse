@@ -12,9 +12,7 @@ import CartDropdown from "../../components/molecules/cart-dropdown/CartDropdown"
 //import { CartContext } from "../../components/context/CartContext";
 
 const Navigation = () => {
-
- // const { isCartOpen } = useContext(CartContext);
- const isCartOpen = useSelector(selectIsCartOpen);
+  // const { isCartOpen } = useContext(CartContext);
 
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
@@ -25,7 +23,9 @@ const Navigation = () => {
       <div className="navigation w-[100%] h-[70px] flex justify-between mb-[25px] ">
         <div className="flex items-center ">
           <Link className="logo-container h-fit w-fit p-[25px]" to="/">
-            <h2 className="text-[3rem] font-bold">Converse <sup className="text-[1rem]">TM</sup></h2>
+            <h2 className="text-[3rem] font-bold">
+              Converse <sup className="text-[1rem]">TM</sup>
+            </h2>
           </Link>
         </div>
         <div className="nav-links-container w-[50%] h-[100%] flex items-center justify-end">
