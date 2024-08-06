@@ -7,15 +7,13 @@ import { store } from "./store/store.js";
 import { BrowserRouter } from "react-router-dom";
 //import { UserProvider } from "./components/context/UserContext.jsx";
 //import { CategoriesProvider } from "./components/context/CategoriesContext.jsx";
-import { CartProvider } from "./components/context/CartContext.jsx";
+//import { CartProvider } from "./components/context/CartContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <CartProvider>
-          <App />
-        </CartProvider>
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
