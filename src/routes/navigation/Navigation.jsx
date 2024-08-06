@@ -12,7 +12,10 @@ import CartDropdown from "../../components/molecules/cart-dropdown/CartDropdown"
 //import { CartContext } from "../../components/context/CartContext";
 
 const Navigation = () => {
-  // const { isCartOpen } = useContext(CartContext);
+
+ // const { isCartOpen } = useContext(CartContext);
+ const isCartOpen = useSelector(selectIsCartOpen);
+
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
   //const { currentUser } = useContext(UserContext);

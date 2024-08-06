@@ -1,8 +1,7 @@
-import { CART_ACTION_TYPE } from "./cart.types";
+
+import { CART_ACTION_TYPES } from "./cart.types";
 import { createAction } from "../../utils/reducers/reducer.utils";
 
-export const setIsCartOpen = (boolean) =>
-  createAction(CART_ACTION_TYPE.SET_IS_CART_OPEN, boolean);
 
 const addCartItem = (cartItems, productToAdd) => {
   //condition to check if the items in the cart contains the product to be added into the cart.NB this returns a boolean
@@ -46,15 +45,21 @@ const clearItemFromCart = (cartItems, itemToClear) => {
   return cartItems.filter((cartItem) => cartItem.id != itemToClear.id);
 };
 
+
+export const setIsCartOpen = (boolean) =>
+  createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
+
 export const addItemToCart = (cartItems, productToAdd) => {
+
   const newCartItems = addCartItem(cartItems, productToAdd);
-  createAction(CART_ACTION_TYPE.SET_CART_ITEMS, newCartItems);
+   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 export const reduceCartItem = (cartItems, itemToReduce) => {
   const newCartItems = reduceItemFromCart(cartItems, itemToReduce);
-  createAction(CART_ACTION_TYPE.SET_CART_ITEMS, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 export const clearCartItem = (cartItems, itemToClear) => {
   const newCartItems = clearItemFromCart(cartItems, itemToClear);
-  createAction(CART_ACTION_TYPE.SET_CART_ITEMS, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+
 };
