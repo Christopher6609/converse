@@ -1,5 +1,7 @@
+
 import { CART_ACTION_TYPES } from "./cart.types";
 import { createAction } from "../../utils/reducers/reducer.utils";
+
 
 const addCartItem = (cartItems, productToAdd) => {
   //condition to check if the items in the cart contains the product to be added into the cart.NB this returns a boolean
@@ -19,6 +21,7 @@ const addCartItem = (cartItems, productToAdd) => {
   // returns the array of the items and adds the new product with an initial quantity of one
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
+
 const reduceItemFromCart = (cartItems, itemToReduce) => {
   //condition to find item that is to be removed .NB this returns a boolean
   const existingItem = cartItems.find(
@@ -42,6 +45,7 @@ const clearItemFromCart = (cartItems, itemToClear) => {
   return cartItems.filter((cartItem) => cartItem.id != itemToClear.id);
 };
 
+
 export const setIsCartOpen = (boolean) =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
 
@@ -57,4 +61,5 @@ export const reduceCartItem = (cartItems, itemToReduce) => {
 export const clearCartItem = (cartItems, itemToClear) => {
   const newCartItems = clearItemFromCart(cartItems, itemToClear);
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+
 };
