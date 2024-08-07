@@ -15,8 +15,6 @@ const CartIcon = () => {
    const dispatch = useDispatch();
     const cartCount = useSelector(selectCartCount);
     const isCartOpen = useSelector(selectIsCartOpen);
-
-    //const {isCartOpen, setIsCartOpen, cartCount} = useContext(CartContext);
     const toggleCartOpen = () => {
         dispatch(setIsCartOpen(!isCartOpen));
     }

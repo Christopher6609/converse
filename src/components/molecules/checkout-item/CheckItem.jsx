@@ -1,17 +1,21 @@
 import "./checkoutItem.styles.scss";
-
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../../store/cart/cart.selector";
+import { reduceCartItem, addItemToCart,clearCartItem } from "../../../store/cart/cart.action";
+//import { useContext } from "react";
+//import { CartContext } from "../../context/CartContext";
 
 
 const CheckItem = ({cartItem}) => {
     const {imageUrl ,name, price,quantity} = cartItem;
-
-    const {reduceCartItem, addItemToCart, clearCartItem} = useContext(CartContext);
-
-    const reduceCartItemHandler = () => reduceCartItem(cartItem);
-    const increaseCartItemHandler = () => addItemToCart(cartItem);
-    const clearItemFromCartHandler = () => clearCartItem(cartItem);
+    const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems);
+    //const {reduceCartItem, addItemToCart, clearCartItem} = useContext(CartContext);
+    
+    const reduceCartItemHandler = () => dispatch(reduceCartItem(cartItems, cartItem));
+    const increaseCartItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
+    const clearItemFromCartHandler = () => dispatch(clearCartItem(cartItems, cartItem));
     return(
         <div className="checkout-item-container">
             <div className="image-container">
@@ -35,6 +39,15 @@ const CheckItem = ({cartItem}) => {
                 </div>
             )
     
+}
+
+CheckItem.propTypes = {
+    cartItem:PropTypes.shape({
+        imageUrl:PropTypes.string,
+        name:PropTypes.string,
+        price:PropTypes.number,
+        quantity:PropTypes.number
+    })
 }
 
 export default CheckItem;
