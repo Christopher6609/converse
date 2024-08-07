@@ -1,10 +1,14 @@
 import "./checkout.styles.scss";
-import { useContext } from "react";
-import { CartContext } from "../../components/context/CartContext";
+//import { useContext } from "react";
+//import { CartContext } from "../../components/context/CartContext";
+import { useSelector } from "react-redux";
+import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector";
 import CheckItem from "../../components/molecules/checkout-item/CheckItem";
 
 const Checkout = () => {
-    const {cartItems, cartTotal} = useContext(CartContext);
+    //const {cartItems, cartTotal} = useContext(CartContext);
+    const cartItems = useSelector(selectCartItems);
+    const cartTotal = useSelector(selectCartTotal);
   
 
 return(
@@ -32,7 +36,7 @@ return(
                     <CheckItem key={cartItem.id} cartItem={cartItem}/>
             )
         })}</div> : <div className="h-[10rem] flex items-center justify-center"><span>Cart is empty</span></div>}
-
+        
         
         <span className="total">Total: ${cartTotal}</span>
     </div>
